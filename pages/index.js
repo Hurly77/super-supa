@@ -1,26 +1,7 @@
-import { useState, useEffect } from 'react';
-import supabase from '@/utils/supabaseClient';
-import Auth from '@/components/Auth';
-import Account from '@/components/Account';
-
 export default function Home() {
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
-      {!session ? (
-        <Auth />
-      ) : (
-        <Account key={session.user.id} session={session} />
-      )}
+    <div className='flex items-center justify-center w-full h-screen'>
+      <h1 className='text-4xl'>Home</h1>
     </div>
   );
 }
